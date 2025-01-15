@@ -5,7 +5,6 @@ import torch
 import torch.nn as nn
 import numpy as np
 from copy import deepcopy
-import matplotlib.pyplot as plt
 from evaluate import evaluate_HIV
 
 env = TimeLimit(
@@ -241,12 +240,6 @@ class ProjectAgent:
             episode_step += 1
             step += 1
             if done or trunc: # or episode_step >= env._max_episode_steps:
-                # if episode % 10 == 0:
-                #     for k in range(self.state_dim):
-                #         plt.figure(figsize=(15, 5))
-                #         plt.hist(states_taken[:episode_step, k])
-                #         plt.savefig(f"histogram_{episode}_{k}.png")
-                #         plt.show()
                 episode_step = 0
                 episode += 1
                 print("Episode ", '{:3d}'.format(episode), 
@@ -264,11 +257,6 @@ class ProjectAgent:
             
             if step % 5000 == 0:
                 torch.save(self.model.state_dict(), f"model_target_step_{step}.pth")
-            
-        plt.figure(figsize=(15, 5))
-        plt.semilogy(episode_return)
-        plt.savefig("episode_return_0001.png")
-        plt.show()
         
         return episode_return
     
