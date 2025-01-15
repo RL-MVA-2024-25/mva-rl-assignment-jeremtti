@@ -283,7 +283,7 @@ class ProjectAgent:
         pass
 
     def load(self):
-        self.model.load_state_dict(torch.load("dqn_target_lr0001_eps0001_step_40000.pth", map_location=self.device))
+        self.model.load_state_dict(torch.load("dqn_target_lr0001_eps0001_step_40000.pth", map_location=self.device, weights_only=True))
         pass
 
 
